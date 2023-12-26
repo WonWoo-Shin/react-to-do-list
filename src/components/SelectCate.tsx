@@ -1,17 +1,13 @@
-import { useSetRecoilState } from "recoil";
-import { IToDo, selectAtom } from "../atom";
+import { useRecoilState } from "recoil";
+import { IToDo, categoryAtom } from "../atom";
 
 function SelectCate() {
-  const setSelect = useSetRecoilState(selectAtom);
-  const onChange = (event: React.FormEvent<HTMLSelectElement>) => {
-    const { currentTarget } = event;
-    const { selectedIndex } = currentTarget;
-    const selectedValue = currentTarget.options[selectedIndex]
-      .value as IToDo["category"];
-    setSelect(selectedValue);
+  const [category, setCategory] = useRecoilState(categoryAtom);
+  const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
+    setCategory(event.currentTarget.value as IToDo["category"]);
   };
   return (
-    <select name="category" onChange={onChange}>
+    <select value={category} onInput={onInput}>
       <option value="TO_DO">TO DO</option>
       <option value="DOING">DOING</option>
       <option value="DONE">DONE</option>

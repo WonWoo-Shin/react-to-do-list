@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 export const isDarkAtom = atom({
   key: "isDark",
@@ -16,7 +16,16 @@ export const toDosAtom = atom<IToDo[]>({
   default: [],
 });
 
-export const selectAtom = atom<IToDo["category"]>({
-  key: "select",
+export const categoryAtom = atom<IToDo["category"]>({
+  key: "category",
   default: "TO_DO",
+});
+
+export const toDosSelector = selector({
+  key: "toDosSelector",
+  get: ({ get }) => {
+    const toDos = get(toDosAtom);
+    const category = get(categoryAtom);
+    return toDos.filter((toDo) => toDo.category === category);
+  },
 });

@@ -1,14 +1,12 @@
 import { useRecoilValue } from "recoil";
 import AddToDo from "./AddToDo";
 import ToDoList from "./ToDoList";
-import { selectAtom, toDosAtom } from "../atom";
+import { toDosSelector } from "../atom";
 import SelectCate from "./SelectCate";
 
 function Home() {
-  const toDos = useRecoilValue(toDosAtom);
-  const select = useRecoilValue(selectAtom);
+  const toDos = useRecoilValue(toDosSelector);
   console.log(toDos);
-  console.log(select);
   return (
     <>
       <h1>To Do</h1>
