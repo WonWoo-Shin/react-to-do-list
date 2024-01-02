@@ -1,16 +1,23 @@
-import { useRecoilState } from "recoil";
-import { IToDo, categoryAtom } from "../atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { Categories, selectedCateAtom, userCategoriesAtom } from "../atom";
 
 function SelectCate() {
-  const [category, setCategory] = useRecoilState(categoryAtom);
+  const [selectedCate, setSelectedCate] = useRecoilState(selectedCateAtom);
+  const userCategories = useRecoilValue(userCategoriesAtom);
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
-    setCategory(event.currentTarget.value as IToDo["category"]);
+    setSelectedCate(event.currentTarget.value as Categories);
   };
   return (
-    <select value={category} onInput={onInput}>
-      <option value="TO_DO">TO DO</option>
-      <option value="DOING">DOING</option>
-      <option value="DONE">DONE</option>
+    <select value={selectedCate} onInput={onInput}>
+      <option value={Categories.toDo}>TO DO</option>
+      <option value={Categories.doing}>DOING</option>
+      <option value={Categories.done}>DONE</option>
+      {userCategories.length > 0 &&
+        userCategories.map((userCategory) => (
+          <option key={userCategory.id} value={userCategory.text}>
+            {userCategory.text}
+          </option>
+        ))}
     </select>
   );
 }

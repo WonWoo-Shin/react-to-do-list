@@ -3,6 +3,7 @@ import AddToDo from "./AddToDo";
 import ToDoList from "./ToDoList";
 import { toDosSelector } from "../atom";
 import SelectCate from "./SelectCate";
+import AddCate from "./AddCate";
 
 function Home() {
   const toDos = useRecoilValue(toDosSelector);
@@ -18,6 +19,8 @@ function Home() {
           <ToDoList key={toDo.id} {...toDo} />
         ))}
       </ul>
+      <hr />
+      <AddCate />
     </>
   );
 }

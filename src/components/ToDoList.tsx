@@ -1,9 +1,10 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { IToDo, categoryAtom, toDosAtom } from "../atom";
+import { Categories, IToDo, toDosAtom, userCategoriesAtom } from "../atom";
 
 function ToDoList({ id, text, category }: IToDo) {
   const setToDos = useSetRecoilState(toDosAtom);
-  const changeCate = (newCate: IToDo["category"]) => {
+  const userCategories = useRecoilValue(userCategoriesAtom);
+  const changeCate = (newCate: Categories) => {
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex((toDo) => toDo.id === id);
       const newToDo: IToDo = { id, text, category: newCate };
@@ -17,15 +18,27 @@ function ToDoList({ id, text, category }: IToDo) {
   return (
     <li>
       <span>{text}</span>
-      {category !== "TO_DO" && (
-        <button onClick={() => changeCate("TO_DO")}>TO DO</button>
+      {category !== Categories.toDo && (
+        <button onClick={() => changeCate(Categories.toDo)}>TO DO</button>
       )}
-      {category !== "DOING" && (
-        <button onClick={() => changeCate("DOING")}>DOING</button>
+      {category !== Categories.doing && (
+        <button onClick={() => changeCate(Categories.doing)}>DOING</button>
       )}
-      {category !== "DONE" && (
-        <button onClick={() => changeCate("DONE")}>DONE</button>
+      {category !== Categories.done && (
+        <button onClick={() => changeCate(Categories.doing)}>DONE</button>
       )}
+      {userCategories.length > 0 &&
+        userCategories.map(
+          (userCategory) =>
+            category !== userCategory.text && (
+              <button
+                key={userCategory.id}
+                onClick={() => changeCate(userCategory.text as Categories)}
+              >
+                {userCategory.text}
+              </button>
+            )
+        )}
     </li>
   );
 }

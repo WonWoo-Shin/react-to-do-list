@@ -5,10 +5,16 @@ export const isDarkAtom = atom({
   default: false,
 });
 
+export const enum Categories {
+  toDo = "TO_DO",
+  doing = "DOING",
+  done = "DONE",
+}
+
 export interface IToDo {
   id: number;
   text: string;
-  category: "TO_DO" | "DOING" | "DONE";
+  category: Categories;
 }
 
 export const toDosAtom = atom<IToDo[]>({
@@ -16,16 +22,26 @@ export const toDosAtom = atom<IToDo[]>({
   default: [],
 });
 
-export const categoryAtom = atom<IToDo["category"]>({
-  key: "category",
-  default: "TO_DO",
+export interface IUserCate {
+  id: number;
+  text: string;
+}
+
+export const userCategoriesAtom = atom<IUserCate[]>({
+  key: "userCategories",
+  default: [],
+});
+
+export const selectedCateAtom = atom<Categories>({
+  key: "selectedCate",
+  default: Categories.toDo,
 });
 
 export const toDosSelector = selector({
   key: "toDosSelector",
   get: ({ get }) => {
     const toDos = get(toDosAtom);
-    const category = get(categoryAtom);
+    const category = get(selectedCateAtom);
     return toDos.filter((toDo) => toDo.category === category);
   },
 });
