@@ -25,7 +25,7 @@ function ToDoList({ id, text, category }: IToDo) {
         <button onClick={() => changeCate(Categories.doing)}>DOING</button>
       )}
       {category !== Categories.done && (
-        <button onClick={() => changeCate(Categories.doing)}>DONE</button>
+        <button onClick={() => changeCate(Categories.done)}>DONE</button>
       )}
       {userCategories.length > 0 &&
         userCategories.map(
