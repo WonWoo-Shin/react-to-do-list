@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { selectedCateAtom, toDosAtom } from "../atom";
+import { Categories, selectedCateAtom, toDosAtom } from "../atom";
 
 interface IForm {
   toDo: string;
@@ -20,7 +20,8 @@ function AddToDo() {
       {
         id: Date.now(),
         text: data.toDo,
-        category: selectedCate,
+        category:
+          selectedCate === Categories.all ? Categories.toDo : selectedCate,
       },
       ...oldToDos,
     ]);

@@ -16,8 +16,8 @@ function AddCate() {
   const setUserCategories = useSetRecoilState(userCategoriesAtom);
   const addCate = (data: ICate) => {
     setUserCategories((prev) => [
-      { id: Date.now(), text: data.newCate },
       ...prev,
+      { id: Date.now(), text: data.newCate },
     ]);
     setValue("newCate", "");
   };

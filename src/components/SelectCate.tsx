@@ -9,6 +9,7 @@ function SelectCate() {
   };
   return (
     <select value={selectedCate} onInput={onInput}>
+      <option value={Categories.all}>ALL</option>
       <option value={Categories.toDo}>TO DO</option>
       <option value={Categories.doing}>DOING</option>
       <option value={Categories.done}>DONE</option>
