@@ -49,7 +49,8 @@ table {
 }
 body{
     color : ${(props) => props.theme.textColor};
-    background-color: ${(props) => props.theme.bgColor};
+    background: linear-gradient(to right bottom, #D9E5F2,#B9C6DA );
+	font-family: 'Montserrat', sans-serif;
 }
 a{
     text-decoration: none;
