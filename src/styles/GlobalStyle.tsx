@@ -48,7 +48,6 @@ table {
     box-sizing: border-box;
 }
 body{
-    color : ${(props) => props.theme.textColor};
     background: linear-gradient(to right bottom, #D9E5F2,#B9C6DA );
 	font-family: 'Montserrat', sans-serif;
 }

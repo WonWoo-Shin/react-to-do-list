@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useSetRecoilState } from "recoil";
-import { userCategoriesAtom } from "../atom";
+import { userCategoriesAtom } from "../../atom";
 
 interface ICate {
   newCate: string;

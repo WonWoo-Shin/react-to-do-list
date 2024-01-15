@@ -1,5 +1,8 @@
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Categories, IToDo, toDosAtom, userCategoriesAtom } from "../atom";
+import { CateCircle, ToDoItem, ToDoText } from "../styles/BottomSectionStyle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
 
 function ToDoList({ id, text, category }: IToDo) {
   const setToDos = useSetRecoilState(toDosAtom);
@@ -16,30 +19,12 @@ function ToDoList({ id, text, category }: IToDo) {
     });
   };
   return (
-    <li>
-      <span>{text}</span>
-      {category !== Categories.toDo && (
-        <button onClick={() => changeCate(Categories.toDo)}>TO DO</button>
-      )}
-      {category !== Categories.doing && (
-        <button onClick={() => changeCate(Categories.doing)}>DOING</button>
-      )}
-      {category !== Categories.done && (
-        <button onClick={() => changeCate(Categories.done)}>DONE</button>
-      )}
-      {userCategories.length > 0 &&
-        userCategories.map(
-          (userCategory) =>
-            category !== userCategory.text && (
-              <button
-                key={userCategory.id}
-                onClick={() => changeCate(userCategory.text as Categories)}
-              >
-                {userCategory.text}
-              </button>
-            )
-        )}
-    </li>
+    <ToDoItem>
+      <CateCircle>
+        <FontAwesomeIcon icon={faPencil} />
+      </CateCircle>
+      <ToDoText>{text}</ToDoText>
+    </ToDoItem>
   );
 }
 

@@ -1,16 +1,10 @@
 import { useRecoilValue } from "recoil";
-import AddToDo from "./AddToDo";
 import ToDoList from "./ToDoList";
 import { toDosSelector } from "../atom";
-import SelectCate from "./SelectCate";
-import AddCate from "./AddCate";
-import {
-  Box,
-  Container,
-  ToDoListBox,
-  BottomSection,
-} from "../styles/HomeStyle";
+import { Container, ToDoListBox, BottomSection } from "../styles/HomeStyle";
 import TopSection from "./TopSection";
+import { ToDoWrap, ToDoListStyle, Title } from "../styles/BottomSectionStyle";
+import AddToDoBox from "./AddToDo/AddToDoBox";
 
 function Home() {
   const toDos = useRecoilValue(toDosSelector);
@@ -19,18 +13,21 @@ function Home() {
       <ToDoListBox>
         <TopSection />
         <BottomSection>
-          {" "}
-          <ul>
-            {toDos.map((toDo) => (
-              <ToDoList key={toDo.id} {...toDo} />
-            ))}
-          </ul>
+          <Title>INBOX</Title>
+          <ToDoWrap>
+            {toDos.length === 0 ? (
+              <div>Add your to do</div>
+            ) : (
+              <ToDoListStyle>
+                {toDos.map((toDo) => (
+                  <ToDoList key={toDo.id} {...toDo} />
+                ))}
+              </ToDoListStyle>
+            )}
+          </ToDoWrap>
         </BottomSection>
       </ToDoListBox>
-      <Box>
-        <AddToDo />
-        <AddCate />
-      </Box>
+      <AddToDoBox />
     </Container>
   );
 }
