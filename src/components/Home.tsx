@@ -8,6 +8,7 @@ import AddToDoBox from "./AddToDo/AddToDoBox";
 
 function Home() {
   const toDos = useRecoilValue(toDosSelector);
+  console.log(toDos);
   return (
     <Container>
       <ToDoListBox>

@@ -49,6 +49,7 @@ export const InputStyle = styled.input`
   width: 100%;
   height: 50px;
   font-size: 20px;
+  color: #ffffff;
   background-color: inherit;
   border: none;
   border-bottom: 2px solid #626bab;
@@ -58,7 +59,7 @@ export const InputStyle = styled.input`
   }
 `;
 
-export const EraseBtnWrap = styled.div`
+export const EraseBtnWrapStyle = styled.div`
   position: absolute;
   top: 0;
   right: 5px;

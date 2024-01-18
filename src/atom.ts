@@ -15,6 +15,8 @@ export const enum Categories {
 export interface IToDo {
   id: number;
   text: string;
+  place?: string;
+  time?: string;
   category: Categories;
 }
 
