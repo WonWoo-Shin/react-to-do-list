@@ -50,8 +50,8 @@ function AddToDo() {
         text: data.toDo,
         place: data.place,
         time: data.time,
-        category:
-          selectedCate === Categories.all ? Categories.toDo : selectedCate,
+        progress: "TO_DO",
+        category: selectedCate,
       },
       ...oldToDos,
     ]);

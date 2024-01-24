@@ -1,25 +1,19 @@
-import { useRecoilState, useRecoilValue } from "recoil";
-import { Categories, selectedCateAtom, userCategoriesAtom } from "../atom";
+import { useRecoilState } from "recoil";
+import { Categories, selectedCateAtom } from "../atom";
+import { SelectCateStyle } from "../styles/AddToDoStyle";
 
 function SelectCate() {
   const [selectedCate, setSelectedCate] = useRecoilState(selectedCateAtom);
-  const userCategories = useRecoilValue(userCategoriesAtom);
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setSelectedCate(event.currentTarget.value as Categories);
   };
   return (
-    <select value={selectedCate} onInput={onInput}>
-      <option value={Categories.all}>ALL</option>
-      <option value={Categories.toDo}>TO DO</option>
-      <option value={Categories.doing}>DOING</option>
-      <option value={Categories.done}>DONE</option>
-      {userCategories.length > 0 &&
-        userCategories.map((userCategory) => (
-          <option key={userCategory.id} value={userCategory.text}>
-            {userCategory.text}
-          </option>
-        ))}
-    </select>
+    <SelectCateStyle value={selectedCate} onInput={onInput}>
+      <option value={Categories.business}>{Categories.business}</option>
+      <option value={Categories.health}>{Categories.health}</option>
+      <option value={Categories.study}>{Categories.study}</option>
+      <option value={Categories.other}>{Categories.other}</option>
+    </SelectCateStyle>
   );
 }
 

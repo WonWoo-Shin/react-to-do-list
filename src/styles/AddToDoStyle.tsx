@@ -59,6 +59,16 @@ export const InputStyle = styled.input`
   }
 `;
 
+export const SelectCateStyle = styled.select`
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  color: #7a84b7;
+  background-color: inherit;
+  border: none;
+  border-bottom: 2px solid #626bab;
+`;
+
 export const EraseBtnWrapStyle = styled.div`
   position: absolute;
   top: 0;

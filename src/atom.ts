@@ -7,9 +7,10 @@ export const isDarkAtom = atom({
 
 export const enum Categories {
   all = "ALL",
-  toDo = "TO_DO",
-  doing = "DOING",
-  done = "DONE",
+  business = "BUSINESS",
+  study = "STUDY",
+  health = "HEALTH",
+  other = "OTHER",
 }
 
 export interface IToDo {
@@ -17,6 +18,7 @@ export interface IToDo {
   text: string;
   place?: string;
   time?: string;
+  progress: "TO_DO" | "DOING" | "DONE";
   category: Categories;
 }
 
@@ -37,7 +39,7 @@ export const userCategoriesAtom = atom<IUserCate[]>({
 
 export const selectedCateAtom = atom<Categories>({
   key: "selectedCate",
-  default: Categories.all,
+  default: Categories.business,
 });
 
 export const toDosSelector = selector({
@@ -45,8 +47,9 @@ export const toDosSelector = selector({
   get: ({ get }) => {
     const toDos = get(toDosAtom);
     const category = get(selectedCateAtom);
-    return category === Categories.all
-      ? toDos
-      : toDos.filter((toDo) => toDo.category === category);
+    // return category === Categories.all
+    //   ? toDos
+    //   : toDos.filter((toDo) => toDo.category === category);
+    return toDos;
   },
 });
