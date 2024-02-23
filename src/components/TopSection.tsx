@@ -8,11 +8,11 @@ import {
 } from "../styles/TopSectionStyle";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
 import { useRecoilValue } from "recoil";
-import { Categories, toDosAtom } from "../atom";
+import { toDosAtom } from "../atom";
 
 function TopSection() {
   const toDos = useRecoilValue(toDosAtom);
-  const done = toDos.filter((toDo) => toDo.category === Categories.done);
+  const done = toDos.filter((toDo) => toDo.progress === "DONE");
   const donePercent = Math.round((done.length / toDos.length) * 100);
   return (
     <TopSectionStyle>

@@ -1,13 +1,13 @@
 import { useRecoilValue } from "recoil";
-import ToDoList from "./ToDoList";
-import { toDosSelector } from "../atom";
+import ToDoList from "./ToDoList/ToDoList";
+import { toDosAtom } from "../atom";
 import { Container, ToDoListBox, BottomSection } from "../styles/HomeStyle";
 import TopSection from "./TopSection";
 import { ToDoWrap, ToDoListStyle, Title } from "../styles/BottomSectionStyle";
 import AddToDoBox from "./AddToDo/AddToDoBox";
 
 function Home() {
-  const toDos = useRecoilValue(toDosSelector);
+  const toDos = useRecoilValue(toDosAtom);
   console.log(toDos);
   return (
     <Container>

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { Categories, selectedCateAtom, toDosAtom } from "../../atom";
+import { selectedCateAtom, toDosAtom } from "../../atom";
 import {
   ButtonStyle,
   EraseBtn,
@@ -14,10 +14,9 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 interface IForm {
   toDo: string;
   place: string;
-  time: string;
 }
 
-function EraseBtnWrap({ eraseValue }: any) {
+function EraseBtnWrap({ eraseValue }: { eraseValue: () => void }) {
   return (
     <EraseBtnWrapStyle>
       <EraseBtn onClick={eraseValue}>
@@ -40,7 +39,6 @@ function AddToDo() {
     defaultValues: {
       toDo: "",
       place: "",
-      time: "",
     },
   });
   const addToDo = (data: IForm) => {
@@ -49,22 +47,22 @@ function AddToDo() {
         id: Date.now(),
         text: data.toDo,
         place: data.place,
-        time: data.time,
-        progress: "TO_DO",
+        time: Date.now(),
+        progress: "TO DO",
         category: selectedCate,
       },
       ...oldToDos,
     ]);
     setValue("toDo", "");
     setValue("place", "");
-    setValue("time", "");
   };
-  const [watchToDo, watchPlace, watchTime] = watch(["toDo", "place", "time"]);
+  const [watchToDo, watchPlace] = watch(["toDo", "place"]);
   return (
     <>
       <form onSubmit={handleSubmit(addToDo)}>
         <InputWrap>
           <InputStyle
+            as="input"
             {...register("toDo", { required: "Write your thing" })}
             placeholder="Thing"
           />
@@ -73,15 +71,9 @@ function AddToDo() {
           )}
         </InputWrap>
         <InputWrap>
-          <InputStyle {...register("place")} placeholder="Place" />
+          <InputStyle as="input" {...register("place")} placeholder="Place" />
           {watchPlace === "" || (
             <EraseBtnWrap eraseValue={() => setValue("place", "")} />
-          )}
-        </InputWrap>
-        <InputWrap>
-          <InputStyle {...register("time")} placeholder="Time" />
-          {watchTime === "" || (
-            <EraseBtnWrap eraseValue={() => setValue("time", "")} />
           )}
         </InputWrap>
         <ButtonStyle>ADD YOUR THING</ButtonStyle>

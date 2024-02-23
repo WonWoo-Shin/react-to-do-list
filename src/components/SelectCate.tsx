@@ -9,10 +9,10 @@ function SelectCate() {
   };
   return (
     <SelectCateStyle value={selectedCate} onInput={onInput}>
-      <option value={Categories.business}>{Categories.business}</option>
-      <option value={Categories.health}>{Categories.health}</option>
-      <option value={Categories.study}>{Categories.study}</option>
-      <option value={Categories.other}>{Categories.other}</option>
+      <option value={Categories.business}>Business</option>
+      <option value={Categories.health}>Health</option>
+      <option value={Categories.study}>Study</option>
+      <option value={Categories.other}>Other</option>
     </SelectCateStyle>
   );
 }
