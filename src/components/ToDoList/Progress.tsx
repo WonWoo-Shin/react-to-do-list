@@ -17,7 +17,7 @@ function Progress({ progress }: { progress: IToDo["progress"] }) {
       );
     case "DOING":
       return (
-        <ProgressItem $color="#FFFF80">
+        <ProgressItem $color="#FFDF80">
           <FontAwesomeIcon icon={faEllipsis} />
         </ProgressItem>
       );

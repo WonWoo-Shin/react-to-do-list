@@ -125,6 +125,7 @@ export const PopupStyle = styled.ul`
   bottom: -90px;
   right: 0;
   box-shadow: 0px 2px 6px rgba(60, 64, 67, 0.16);
+  z-index: 1;
   li {
     cursor: pointer;
     :hover {

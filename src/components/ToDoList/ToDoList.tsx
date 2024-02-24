@@ -45,7 +45,9 @@ function ToDoList({ id, text, place, progress, category }: IToDo) {
             <Option onClick={onClick}>
               <FontAwesomeIcon icon={faEllipsisV} />
             </Option>
-            {isActive && <OptionPopUp progress={progress} />}
+            {isActive && (
+              <OptionPopUp {...{ id, text, place, progress, category }} />
+            )}
           </OptionArea>
         </RightSide>
       </ToDoText>

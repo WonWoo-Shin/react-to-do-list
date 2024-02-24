@@ -6,13 +6,28 @@ import {
   faExclamation,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { IToDo } from "../../atom";
+import { IToDo, toDosAtom } from "../../atom";
+import { useSetRecoilState } from "recoil";
 
-function OptionPopUp({ progress }: { progress: IToDo["progress"] }) {
+function OptionPopUp({ id, text, place, progress, category }: IToDo) {
+  const setToDos = useSetRecoilState(toDosAtom);
+  const ChangeProgress = (newProgress: IToDo["progress"]) => {
+    setToDos((oldToDos) => {
+      const targettIndex = oldToDos.findIndex((toDo) => toDo.id === id);
+      return [
+        ...oldToDos.slice(0, targettIndex),
+        { id, text, place, progress: newProgress, category },
+        ...oldToDos.slice(targettIndex + 1),
+      ];
+    });
+  };
+  const deleteToDo = () => {
+    setToDos((oldToDos) => oldToDos.filter((toDo) => toDo.id !== id));
+  };
   return (
     <PopupStyle>
       {progress === "TO DO" || (
-        <li>
+        <li onClick={() => ChangeProgress("TO DO")}>
           <div>
             <FontAwesomeIcon icon={faExclamation} />
             <span>TO DO</span>
@@ -20,7 +35,7 @@ function OptionPopUp({ progress }: { progress: IToDo["progress"] }) {
         </li>
       )}
       {progress === "DOING" || (
-        <li>
+        <li onClick={() => ChangeProgress("DOING")}>
           <div>
             <FontAwesomeIcon icon={faEllipsis} />
             <span>DOING</span>
@@ -28,14 +43,14 @@ function OptionPopUp({ progress }: { progress: IToDo["progress"] }) {
         </li>
       )}
       {progress === "DONE" || (
-        <li>
+        <li onClick={() => ChangeProgress("DONE")}>
           <div>
             <FontAwesomeIcon icon={faCheck} />
             <span>DONE</span>
           </div>
         </li>
       )}
-      <li>
+      <li onClick={deleteToDo}>
         <div>
           <FontAwesomeIcon icon={faXmark} />
           <span>DELETE</span>
