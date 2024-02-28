@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 export const isDarkAtom = atom({
   key: "isDark",
@@ -26,6 +26,11 @@ export const toDosAtom = atom<IToDo[]>({
   default: [],
 });
 
+export const changeCateAtom = atom<Categories>({
+  key: "changeCate",
+  default: Categories.all,
+});
+
 export interface IUserCate {
   id: number;
   text: string;
@@ -39,4 +44,17 @@ export const userCategoriesAtom = atom<IUserCate[]>({
 export const selectedCateAtom = atom<Categories>({
   key: "selectedCate",
   default: Categories.business,
+});
+
+export const toDosSelector = selector({
+  key: "toDosSelctor",
+  get: ({ get }) => {
+    const toDos = get(toDosAtom);
+    const changeCate = get(changeCateAtom);
+    if (changeCate === "ALL") {
+      return toDos;
+    } else {
+      return toDos.filter((toDo) => toDo.category === changeCate);
+    }
+  },
 });

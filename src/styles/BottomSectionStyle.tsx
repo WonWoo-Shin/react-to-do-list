@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Title = styled.div`
+export const Title = styled.select`
   color: #9296a8;
   font-weight: 600;
   font-size: 15px;

@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { IToDo, toDosAtom } from "../../atom";
 import { useSetRecoilState } from "recoil";
+import { useCallback, useEffect, useRef } from "react";
 
 function OptionPopUp({ id, text, place, progress, category }: IToDo) {
   const setToDos = useSetRecoilState(toDosAtom);

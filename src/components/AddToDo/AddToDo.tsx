@@ -5,11 +5,15 @@ import {
   ButtonStyle,
   EraseBtn,
   EraseBtnWrapStyle,
+  ErrorMsg,
   InputStyle,
   InputWrap,
 } from "../../styles/AddToDoStyle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTriangleExclamation,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface IForm {
   toDo: string;
@@ -69,6 +73,14 @@ function AddToDo() {
           {watchToDo === "" || (
             <EraseBtnWrap eraseValue={() => setValue("toDo", "")} />
           )}
+          <ErrorMsg>
+            {errors.toDo && (
+              <>
+                <FontAwesomeIcon icon={faTriangleExclamation} />
+                {errors.toDo.message}
+              </>
+            )}
+          </ErrorMsg>
         </InputWrap>
         <InputWrap>
           <InputStyle as="input" {...register("place")} placeholder="Place" />
@@ -78,7 +90,6 @@ function AddToDo() {
         </InputWrap>
         <ButtonStyle>ADD YOUR THING</ButtonStyle>
       </form>
-      <span>{errors.toDo?.message}</span>
     </>
   );
 }

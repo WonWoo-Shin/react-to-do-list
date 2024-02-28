@@ -21,9 +21,6 @@ import OptionPopUp from "./OptionPopUp";
 function ToDoList({ id, text, place, progress, category }: IToDo) {
   const date = new Date(id);
   const [isActive, setIsActive] = useState(false);
-  const onClick = () => {
-    setIsActive((prev) => !prev);
-  };
   return (
     <ToDoItem>
       <CateCircle>
@@ -42,7 +39,7 @@ function ToDoList({ id, text, place, progress, category }: IToDo) {
             <Progress progress={progress} />
           </Column>
           <OptionArea>
-            <Option onClick={onClick}>
+            <Option onClick={() => setIsActive((prev) => !prev)}>
               <FontAwesomeIcon icon={faEllipsisV} />
             </Option>
             {isActive && (

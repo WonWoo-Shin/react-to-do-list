@@ -48,6 +48,7 @@ export const InputWrap = styled.div`
 const CateInputStyle = styled.select`
   width: 100%;
   height: 50px;
+  margin-bottom: 20px;
   font-size: 20px;
   color: #ffffff;
   background-color: inherit;
@@ -70,7 +71,7 @@ export const EraseBtnWrapStyle = styled.div`
   top: 0;
   right: 5px;
   width: 25px;
-  height: 100%;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,4 +98,14 @@ export const ButtonStyle = styled.button`
   color: #eff9fe;
   font-size: 15px;
   cursor: pointer;
+`;
+
+export const ErrorMsg = styled.span`
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  color: #ffffff;
+  svg {
+    margin-right: 5px;
+  }
 `;
