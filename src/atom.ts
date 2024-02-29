@@ -58,3 +58,11 @@ export const toDosSelector = selector({
     }
   },
 });
+
+export const progressSelector = selector({
+  key: "progressSelector",
+  get: ({ get }) => {
+    const toDos = get(toDosAtom);
+    return toDos.map((toDo) => toDo.progress);
+  },
+});
