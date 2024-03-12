@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { selectedCateAtom, toDosAtom } from "../../atom";
+import { Progresses, selectedCateAtom, toDosAtom } from "../../atom";
 import {
   ButtonStyle,
   EraseBtn,
@@ -52,7 +52,7 @@ function AddToDo() {
         text: data.toDo,
         place: data.place,
         time: Date.now(),
-        progress: "TO DO",
+        progress: Progresses.toDo,
         category: selectedCate,
       },
       ...oldToDos,

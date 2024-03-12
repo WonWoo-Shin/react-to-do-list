@@ -13,11 +13,18 @@ export const enum Categories {
   other = "OTHER",
 }
 
+export const enum Progresses {
+  all = "ALL",
+  toDo = "TO_DO",
+  doing = "DOING",
+  done = "DONE",
+}
+
 export interface IToDo {
   id: number;
   text: string;
   place?: string;
-  progress: "TO DO" | "DOING" | "DONE";
+  progress: Progresses;
   category: Categories;
 }
 
@@ -29,6 +36,11 @@ export const toDosAtom = atom<IToDo[]>({
 export const changeCateAtom = atom<Categories>({
   key: "changeCate",
   default: Categories.all,
+});
+
+export const changeProgressAtom = atom<Progresses>({
+  key: "changeProgress",
+  default: Progresses.all,
 });
 
 export interface IUserCate {
@@ -50,11 +62,17 @@ export const toDosSelector = selector({
   key: "toDosSelctor",
   get: ({ get }) => {
     const toDos = get(toDosAtom);
-    const changeCate = get(changeCateAtom);
-    if (changeCate === "ALL") {
-      return toDos;
+    const cate = get(changeCateAtom);
+    const progress = get(changeProgressAtom);
+    const cateFilterToDos =
+      cate === Categories.all
+        ? toDos
+        : toDos.filter((toDo) => cate === toDo.category);
+
+    if (progress == Progresses.all) {
+      return cateFilterToDos;
     } else {
-      return toDos.filter((toDo) => toDo.category === changeCate);
+      return cateFilterToDos.filter((toDo) => progress === toDo.progress);
     }
   },
 });

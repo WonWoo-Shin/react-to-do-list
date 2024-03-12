@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IToDo } from "../../atom";
+import { IToDo, Progresses } from "../../atom";
 import { ProgressItem } from "../../styles/BottomSectionStyle";
 import {
   faCheck,
@@ -9,13 +9,13 @@ import {
 
 function Progress({ progress }: { progress: IToDo["progress"] }) {
   switch (progress) {
-    case "TO DO":
+    case Progresses.toDo:
       return (
         <ProgressItem $color="#FFA080">
           <FontAwesomeIcon icon={faExclamation} />
         </ProgressItem>
       );
-    case "DOING":
+    case Progresses.doing:
       return (
         <ProgressItem $color="#FFDF80">
           <FontAwesomeIcon icon={faEllipsis} />

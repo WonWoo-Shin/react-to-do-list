@@ -6,9 +6,8 @@ import {
   faExclamation,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { IToDo, toDosAtom } from "../../atom";
+import { IToDo, Progresses, toDosAtom } from "../../atom";
 import { useSetRecoilState } from "recoil";
-import { useCallback, useEffect, useRef } from "react";
 
 function OptionPopUp({ id, text, place, progress, category }: IToDo) {
   const setToDos = useSetRecoilState(toDosAtom);
@@ -27,24 +26,24 @@ function OptionPopUp({ id, text, place, progress, category }: IToDo) {
   };
   return (
     <PopupStyle>
-      {progress === "TO DO" || (
-        <li onClick={() => ChangeProgress("TO DO")}>
+      {progress === Progresses.toDo || (
+        <li onClick={() => ChangeProgress(Progresses.toDo)}>
           <div>
             <FontAwesomeIcon icon={faExclamation} />
             <span>TO DO</span>
           </div>
         </li>
       )}
-      {progress === "DOING" || (
-        <li onClick={() => ChangeProgress("DOING")}>
+      {progress === Progresses.doing || (
+        <li onClick={() => ChangeProgress(Progresses.doing)}>
           <div>
             <FontAwesomeIcon icon={faEllipsis} />
             <span>DOING</span>
           </div>
         </li>
       )}
-      {progress === "DONE" || (
-        <li onClick={() => ChangeProgress("DONE")}>
+      {progress === Progresses.done || (
+        <li onClick={() => ChangeProgress(Progresses.done)}>
           <div>
             <FontAwesomeIcon icon={faCheck} />
             <span>DONE</span>

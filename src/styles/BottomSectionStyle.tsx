@@ -4,6 +4,11 @@ export const Title = styled.select`
   color: #9296a8;
   font-weight: 600;
   font-size: 15px;
+  border: none;
+  outline: none;
+  appearance: none;
+  option {
+  }
 `;
 
 export const ToDoWrap = styled.div`

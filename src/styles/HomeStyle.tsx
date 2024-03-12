@@ -33,6 +33,11 @@ export const BottomSection = styled.div`
   padding: 30px;
 `;
 
+export const Filter = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const AddToDoBoxStyle = styled(Box)`
   background-color: #46529d;
   padding: 30px;
