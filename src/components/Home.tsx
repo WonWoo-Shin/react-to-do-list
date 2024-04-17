@@ -6,9 +6,10 @@ import {
   ToDoListBox,
   BottomSection,
   Filter,
+  FilterWrap,
 } from "../styles/HomeStyle";
 import TopSection from "./TopSection";
-import { ToDoWrap, ToDoListStyle, Title } from "../styles/BottomSectionStyle";
+import { ToDoWrap, ToDoListStyle } from "../styles/BottomSectionStyle";
 import AddToDoBox from "./AddToDo/AddToDoBox";
 import ChangeCate from "./ChangeCate";
 import ChangeProgress from "./ChangeProgress";
@@ -22,8 +23,14 @@ function Home() {
         <TopSection />
         <BottomSection>
           <Filter>
-            <ChangeCate />
-            <ChangeProgress />
+            <FilterWrap>
+              <div>Category</div>
+              <ChangeCate />
+            </FilterWrap>
+            <FilterWrap>
+              <div>Progress</div>
+              <ChangeProgress />
+            </FilterWrap>
           </Filter>
           <ToDoWrap>
             {toDos.length === 0 ? (

@@ -38,6 +38,25 @@ export const Filter = styled.div`
   justify-content: space-between;
 `;
 
+export const FilterWrap = styled.div`
+  div {
+    margin-bottom: 10px;
+    color: #9296a8;
+    font-weight: 600;
+  }
+`;
+
+export const Select = styled.select`
+  color: #9296a8;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  appearance: none;
+  option {
+  }
+`;
+
 export const AddToDoBoxStyle = styled(Box)`
   background-color: #46529d;
   padding: 30px;
